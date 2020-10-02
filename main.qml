@@ -37,7 +37,9 @@ ApplicationWindow{
                 font.family: webFont.name
                 text: '<b>NickName</b>'
                 font.pixelSize: app.fs*10
-                width: 800
+                width: app.width-app.fs*2
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
         Item{
@@ -106,5 +108,7 @@ ApplicationWindow{
         }
         mp.source=urlSound
         mp.play()
+        app.raise()
+        app.title=texto.text+' '+texto2.text
     }
 }
