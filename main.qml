@@ -1,11 +1,16 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtMultimedia 5.0
-
+import QtQuick.Window 2.0
 ApplicationWindow{
     id:app
     visible: true
-    visibility: "Maximized"
+    visibility: "Windowed"
+    width: Screen.width*0.5
+    height: Screen.height*0.5
+    x:0
+    y:0
+    flags: Qt.FramelessWindowHint
     property int fs: xApp.width*0.02
     //FontLoader { id: webFont; name: "Pozofour";source: "./Pozofour.ttf" }
     FontLoader { id: webFont; name: "Asman";source: "./Asman.ttf" }
@@ -13,45 +18,51 @@ ApplicationWindow{
         id: mp
         autoLoad: true
         autoPlay: true
+        onDurationChanged: {
+            timerQuit.stop()
+            timerQuit.interval=duration+1000
+            timerQuit.start()
+        }
     }
     Item{
         id: xApp
         anchors.fill: parent
         Emisor{
             anchors.centerIn: parent
-            //anchors.fill: parent
         }
         MouseArea{
             anchors.fill: parent
             onDoubleClicked: Qt.quit()
         }
-    }
-    Column{
-        anchors.centerIn: parent
-        spacing: app.fs*2
-        Item{
-            width: 1
-            height: texto.contentHeight
-            TextShaker{
-                id: texto
-                font.family: webFont.name
-                text: '<b>NickName</b>'
-                font.pixelSize: app.fs*10
-                width: app.width-app.fs*2
-                horizontalAlignment: Text.AlignHCenter
-                anchors.horizontalCenter: parent.horizontalCenter
+        Column{
+            anchors.centerIn: parent
+            spacing: app.fs*2
+            Item{
+                width: 1
+                height: texto.contentHeight
+                TextShaker{
+                    id: texto
+                    font.family: webFont.name
+                    text: '<b>NickName</b>'
+                    font.pixelSize: app.fs*10
+                    width: app.width-app.fs*2
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors.centerIn: parent
+                    //anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
-        }
-        Item{
-            width: 1
-            height: texto2.contentHeight
-            TextShaker{
-                id: texto2
-                font.family: webFont.name
-                text: '<b>Event</b>'
-                font.pixelSize: app.fs*5
-                width: xApp.width*0.8
-                anchors.horizontalCenter: parent.horizontalCenter
+            Item{
+                width: 1
+                height: texto2.contentHeight
+                TextShaker{
+                    id: texto2
+                    font.family: webFont.name
+                    text: '<b>Event</b>'
+                    font.pixelSize: app.fs*5
+                    width: xApp.width*0.8
+                    anchors.centerIn: parent
+                    //anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
         }
     }

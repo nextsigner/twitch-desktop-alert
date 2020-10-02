@@ -105,8 +105,8 @@ Rectangle {
             group: "center"
             emitRate: 400
             lifeSpan: 2000
-            size: 20
-            sizeVariation: 2
+            size: app.fs
+            sizeVariation: app.fs*0.1
             endSize: 0
             //! [0]
             shape: EllipseShape {fill: false}
@@ -125,9 +125,9 @@ Rectangle {
             startTime: 2000
             emitRate: 2000
             lifeSpan: 2000
-            size: 28
-            sizeVariation: 2
-            endSize: 16
+            size: app.fs*1.5
+            sizeVariation: app.fs*0.15
+            endSize: app.fs*0.25
             shape: EllipseShape {fill: false}
             velocity: TargetDirection {
                 targetX: root.width/2
@@ -151,9 +151,9 @@ Rectangle {
             startTime: 1000
             emitRate: 2000
             lifeSpan: 2000
-            size: 32
-            sizeVariation: 2
-            endSize: 16
+            size: app.fs*1.8
+            sizeVariation: app.fs*0.15
+            endSize: app.fs*0.5
             shape: EllipseShape {fill: false}
             velocity: TargetDirection {
                 targetX: root.width/2
